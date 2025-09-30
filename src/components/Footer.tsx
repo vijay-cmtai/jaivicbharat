@@ -1,130 +1,179 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import { Twitter, Linkedin, Instagram, Mail } from "lucide-react";
+import {
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Mail,
+  Phone,
+  MapPin,
+} from "lucide-react";
 
 const Footer = () => {
-  const exploreLinks = [
-    { name: "About Us", href: "/about" },
-    { name: "Our Foundation", href: "/foundation" },
-    { name: "Our Programs", href: "/programs" },
-    { name: "Join Us", href: "/join" },
+  const companyLinks = [
+    { label: "About Us", href: "/about-us" },
+    { label: "Contact Us", href: "/contact-us" },
+    { label: "Careers", href: "/careers" },
+    { label: "Press", href: "/press" },
+    { label: "Investor Relations", href: "/investor-relations" },
   ];
-
-  const programLinks = [
-    { name: "#OneOrganicSwitch", href: "/programs/one-organic-switch" },
-    { name: "Organic Corners", href: "/programs/organic-corners" },
-    { name: "Farmer Transition Toolkits", href: "/programs/farmer-toolkits" },
-    { name: "Carbon Credit Marketplace", href: "/programs/carbon-marketplace" },
+  const propertyLinks = [
+    { label: "Buy Property", href: "/buy" },
+    { label: "Rent Property", href: "/rent" },
+    { label: "Commercial Properties", href: "/commercial" },
+    { label: "New Projects", href: "new-projects" },
+    { label: "Property Valuation", href: "property-services" },
   ];
-
-  const socialLinks = [
-    {
-      name: "Twitter",
-      icon: Twitter,
-      href: "https://twitter.com/jaivicbharat",
-    },
-    {
-      name: "LinkedIn",
-      icon: Linkedin,
-      href: "https://linkedin.com/company/jaivicbharat",
-    },
-    {
-      name: "Instagram",
-      icon: Instagram,
-      href: "https://instagram.com/jaivicbharat",
-    },
+  const servicesLinks = [
+    { label: "Home Loans", href: "/services/home-loans" },
+    { label: "Property Management", href: "/services/property-management" },
+    { label: "Legal Services", href: "/services/legal-services" },
+    { label: "Interior Design", href: "/services/interior-design" },
+    { label: "Property Insurance", href: "/services/property-insurance" },
   ];
-
+  const cities = [
+    "Mumbai",
+    "Delhi",
+    "Bangalore",
+    "Chennai",
+    "Hyderabad",
+    "Pune",
+    "Kolkata",
+    "Ahmedabad",
+  ];
   return (
-    <footer className="bg-primary text-primary-foreground pt-16 pb-8">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Brand Column */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full gradient-accent flex items-center justify-center">
-                <span className="text-xl">🌿</span>
+    <footer className="bg-muted/30 border-t">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          <div className="lg:col-span-2">
+            <Link to="/" className="flex items-center space-x-2 mb-4">
+              <div className="h-8 w-8 rounded bg-gradient-to-r from-primary to-primary-hover flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-lg">
+                  I
+                </span>
               </div>
-              <span className="text-xl font-display font-bold">
-                Jaivic Bharat
+              <span className="text-xl font-bold text-foreground">
+                Investorsdeaal
               </span>
-            </div>
-            <p className="text-primary-foreground/80 text-sm leading-relaxed">
-              A citizen-led movement for organic India.
+            </Link>
+            <p className="text-muted-foreground mb-4 max-w-md">
+              India's leading real estate platform connecting buyers, sellers,
+              and renters. Find your perfect property with our comprehensive
+              listing service.
             </p>
+            <div className="space-y-2">
+              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                <Mail className="h-4 w-4" />
+                <span>info@investorsdeaal.com</span>
+              </div>
+              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                <Phone className="h-4 w-4" />
+                <span>+91 98765 43210</span>
+              </div>
+              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                <MapPin className="h-4 w-4" />
+                <span>Mumbai, Maharashtra, India</span>
+              </div>
+            </div>
           </div>
-
-          {/* Explore Column */}
           <div>
-            <h3 className="font-display font-bold text-lg mb-4">Explore</h3>
+            <h4 className="font-semibold text-foreground mb-4">Company</h4>
             <ul className="space-y-2">
-              {exploreLinks.map((link) => (
-                <li key={link.name}>
+              {companyLinks.map((link) => (
+                <li key={link.label}>
                   <Link
                     to={link.href}
-                    className="text-primary-foreground/80 hover:text-accent transition-colors text-sm"
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    {link.name}
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-
-          {/* Programs Column */}
           <div>
-            <h3 className="font-display font-bold text-lg mb-4">Programs</h3>
+            <h4 className="font-semibold text-foreground mb-4">Properties</h4>
             <ul className="space-y-2">
-              {programLinks.map((link) => (
-                <li key={link.name}>
+              {propertyLinks.map((link) => (
+                <li key={link.label}>
                   <Link
                     to={link.href}
-                    className="text-primary-foreground/80 hover:text-accent transition-colors text-sm"
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    {link.name}
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-
-          {/* Contact Column */}
           <div>
-            <h3 className="font-display font-bold text-lg mb-4">Contact</h3>
-            <div className="space-y-3 text-sm text-primary-foreground/80">
-              <p>New Delhi • India</p>
-              <a
-                href="mailto:info@jaivicbharat.org"
-                className="flex items-center gap-2 hover:text-accent transition-colors"
-              >
-                <Mail size={16} />
-                info@jaivicbharat.org
-              </a>
-            </div>
-            <div className="flex gap-4 mt-6">
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-accent flex items-center justify-center transition-colors"
-                    aria-label={social.name}
+            <h4 className="font-semibold text-foreground mb-4">Services</h4>
+            <ul className="space-y-2">
+              {servicesLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.href}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    <Icon size={18} />
-                  </a>
-                );
-              })}
-            </div>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-primary-foreground/20 text-center">
-          <p className="text-sm text-primary-foreground/60">
-            © Jaivic Bharat 2025 — All rights reserved.
+        {/* Cities */}
+        <div className="mt-8 pt-8 border-t">
+          <h4 className="font-semibold text-foreground mb-4">Popular Cities</h4>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {cities.map((city) => (
+              <Link
+                key={city}
+                to="#"
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                Properties in {city}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="mt-8 pt-8 border-t flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm text-muted-foreground">
+            © 2024 Investorsdeaal. All rights reserved.
           </p>
+          <div className="flex items-center space-x-4 mt-4 md:mt-0">
+            <span className="text-sm text-muted-foreground">Follow us:</span>
+            <div className="flex space-x-3">
+              <Link
+                to="#"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Facebook className="h-4 w-4" />
+              </Link>
+              <Link
+                to="#"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Twitter className="h-4 w-4" />
+              </Link>
+              <Link
+                to="#"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Instagram className="h-4 w-4" />
+              </Link>
+              <Link
+                to="#"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Linkedin className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
