@@ -1,69 +1,97 @@
-import { Users, Building2, Sprout, Heart } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import React from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Users, Building2, Sprout, Heart, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-const stakeholders = [
-  {
-    icon: Users,
-    title: "Citizens & Consumers",
-    description: "Join the movement by switching to organic products and supporting sustainable practices in your daily life.",
-  },
-  {
-    icon: Sprout,
-    title: "Farmers & Producers",
-    description: "Transition to organic farming with our comprehensive support, training, and market access programs.",
-  },
-  {
-    icon: Building2,
-    title: "Businesses & Advertisers",
-    description: "Partner with us to promote organic products and reach a community passionate about sustainability.",
-  },
-  {
-    icon: Heart,
-    title: "Donors & Investors",
-    description: "Support our mission through donations or investments in sustainable farming and community programs.",
-  },
+// Data ko halka aur saaf rakha gaya hai
+const stakeholdersData = [
+  { icon: Sprout, label: "Farmers" },
+  { icon: Users, label: "Consumers" },
+  { icon: Building2, label: "Businesses" },
+  { icon: Heart, label: "Supporters" },
 ];
 
-const Stakeholders = () => {
-  return (
-    <section id="stakeholders" className="py-24 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-            Stakeholders
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Everyone has a role to play in building an organic India
-          </p>
-        </div>
+// Animation Variants
+const sectionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut", staggerChildren: 0.1 },
+  },
+};
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {stakeholders.map((stakeholder, index) => {
-            const Icon = stakeholder.icon;
-            return (
-              <Card
-                key={stakeholder.title}
-                className="glass-card hover-lift border-2 text-center group animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
+const iconVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1 },
+};
+
+const StakeholderTeaser: React.FC = () => {
+  return (
+    <motion.section
+      className="py-24 bg-muted/50"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.5 }}
+    >
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Heading */}
+          <motion.h2
+            variants={iconVariants}
+            className="text-3xl md:text-4xl font-display font-bold mb-4 text-foreground"
+          >
+            A Movement Built by Many
+          </motion.h2>
+
+          {/* Subheading */}
+          <motion.p
+            variants={iconVariants}
+            className="text-lg text-muted-foreground mb-12"
+          >
+            Everyone has a role to play in the journey towards a sustainable
+            India.
+          </motion.p>
+
+          {/* Icons Row */}
+          <div className="flex justify-center items-center gap-8 md:gap-16 mb-12">
+            {stakeholdersData.map((stakeholder) => (
+              <motion.div
+                key={stakeholder.label}
+                variants={iconVariants}
+                className="group flex flex-col items-center text-center w-24"
               >
-                <CardHeader>
-                  <div className="w-16 h-16 rounded-2xl gradient-primary flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="text-primary-foreground" size={28} />
-                  </div>
-                  <CardTitle className="text-xl font-display">{stakeholder.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {stakeholder.description}
-                  </p>
-                </CardContent>
-              </Card>
-            );
-          })}
+                <div className="w-20 h-20 rounded-full gradient-primary flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/20">
+                  <stakeholder.icon
+                    className="text-primary-foreground"
+                    size={32}
+                  />
+                </div>
+                <span className="mt-4 text-sm font-medium text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {stakeholder.label}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Call-to-Action Button */}
+          <motion.div variants={iconVariants}>
+            <Button
+              asChild
+              size="lg"
+              className="group gradient-accent text-accent-foreground hover-lift"
+            >
+              <Link to="/stakeholders">
+                Explore All Roles
+                <ArrowRight className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </Button>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
-export default Stakeholders;
+export default StakeholderTeaser;
